@@ -1,0 +1,12 @@
+TODO: 
+
+    Features
+        pg    SQL  
+    [ ] GET  - SELECT - Get koala info and display it on the DOM
+    [ ] POST - INSERT - Add a koala to the database
+    [ ] PUT  - UPDATE - Update status "ready to transfer" with button click
+        [ ] add ready to transfer button to DOM
+        [ ] Button only appear for Koalas that haven't yet been marked ready for transfer
+    [ ] Create database
+    [ ] populate database with Koala starting data
+    [ ] 
