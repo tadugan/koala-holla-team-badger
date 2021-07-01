@@ -1,12 +1,49 @@
 TODO: 
 
-    Features
-        pg    SQL  
-    [ ] GET  - SELECT - Get koala info and display it on the DOM
-    [ ] POST - INSERT - Add a koala to the database
-    [ ] PUT  - UPDATE - Update status "ready to transfer" with button click
-        [ ] add ready to transfer button to DOM
-        [ ] Button only appear for Koalas that haven't yet been marked ready for transfer
-    [ ] Create database
-    [ ] populate database with Koala starting data
-    [ ] 
+    !!! --- *** REMEMBER WORK IN YOUR OWN BRANCH *** --- !!!
+
+       • Make a PR when you feature is DONE (try to do just one PR)
+       • Tim is responsible for reviewing PRs (message Tim on slack when you have a PR ready)
+            • Meghan reviews Tim's PR 
+
+    1. Meghan 
+    2. Chris
+    3. John
+    4. Tim
+
+    Base Features
+        pg     SQL  
+    [1] GET  - SELECT - Get koala info and display it on the DOM
+        [1] append updated info to DOM
+        [1] create ready to transfer button for PUT/INSERT using data-id 
+        [1] Button only appear for Koalas that haven't yet been marked ready for transfer
+
+    [2] POST - INSERT - Add a koala to the database
+
+    [3] PUT  - UPDATE - Update status "ready to transfer" with button click
+        [3] Use ready to transfer button to trigger update from 'no' to 'yes'
+        [3] id will be 'transferButton', us data-id to target koala's table ID
+
+    [4] Create database
+    [4] Populate database with Koala starting data
+    [4] Connect Koala Router to Database
+    
+    Stretch Goals
+    [4] DELETE - DELETE - Delete a Koala from the database 
+        [ ] Confirmation Alert before deleting
+    [ ] Toggle between ready to transfer and NOT ready to transfer 
+    [ ] Add form validation, additional styling and a README.md.
+    [ ] Client side filtering with a text box
+    [ ] Ability to edit other information (Name, Age, Notes) for existing Koalas in the db.
+
+    QUESTIONS 
+    
+        What is out object model for making requests?
+            ...
+            data: {
+                name: 'tim',
+                age: '29',
+                gender: 'male/female',
+                readyForTransfer: 'no/yes',
+                notes: ''
+            }
