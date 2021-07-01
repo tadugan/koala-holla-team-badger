@@ -1,3 +1,4 @@
+const pool = require('../modules/pool');
 const express = require('express');
 const koalaRouter = express.Router();
 
@@ -5,7 +6,7 @@ const koalaRouter = express.Router();
 
 
 // GET
-
+ 
 
 // POST
 
