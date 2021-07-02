@@ -8,7 +8,7 @@ $( document ).ready( function(){
   getKoalas();
   clearInput(); //clears user input on page load
 
-  $('#readyButton').on("click", koalaReadyHandler);
+  $('table').on("click", '#transferButton', koalaReadyHandler);
   // listener to delete a koala on button click
   $('#viewKoalas').on('click', 'button#deleteButton', deleteKoalaHandler);
 }); // end doc ready
@@ -63,7 +63,8 @@ for (let i= 0; i < response.length; i++){
         <td>${response[i].age}</td>
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
-        <td><button id="transferButton" data-id="${response.id}"> Ready for Transfer </button></td>
+        <td><button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button></td>
+        <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
       </tr>
       `)
 }else if(`${response[i].readyForTransfer}` == `Y`){
@@ -74,6 +75,8 @@ for (let i= 0; i < response.length; i++){
         <td>${response[i].age}</td>
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
+        <td><td>
+        <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
       </tr>
       `)
 }
@@ -132,7 +135,7 @@ function deleteKoala(koalaId) {
     method: 'DELETE',
     url: `/koalas/${koalaId}`
   })
-  .then(response () => {
+  .then(response => {
     console.log('Goodbye koala friend!!');
     getKoalas(); // MC's function to GET and display koala data
   })
