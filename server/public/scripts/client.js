@@ -137,17 +137,40 @@ function deleteKoalaHandler() {
 
 // ajax request to delete a koala from the database
 function deleteKoala(koalaId) {
-  $.ajax({
-    method: 'DELETE',
-    url: `/koalas/${koalaId}`
+  Swal.fire({
+    title: 'Are you sure you want to abandon this poor Koala, you monster?',
+    text: "You won't be able to find them again. Ever.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, abandon this beautiful creature!!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Abandoned',
+        'It\'s gone now. I hope you are happy.',
+        'success'
+      )
+
+      $.ajax({
+        method: 'DELETE',
+        url: `/koalas/${koalaId}`
+      })
+      .then(response => {
+        console.log('Goodbye koala friend!!');
+        getKoalas(); // MC's function to GET and display koala data
+      })
+      .catch((error) => {
+        alert(`There was a problem deleting ${koalaId}. Please try again.`);
+      });
+    }
+    else {
+      return;
+    }
   })
-  .then(response => {
-    console.log('Goodbye koala friend!!');
-    getKoalas(); // MC's function to GET and display koala data
-  })
-  .catch((error) => {
-    alert(`There was a problem deleting ${koalaId}. Please try again.`);
-  });
+
+  
 
 }
 
