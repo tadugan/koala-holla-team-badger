@@ -13,9 +13,9 @@ const koalaRouter = express.Router();
 
 
 // PUT
-koalaRouter.put(':/id', (req, res) => {
+koalaRouter.put('/:id', (req, res) => {
     const koalaId = req.params.id;
-    let queryText = `UPDATE "koalas" SET readyForTransfer=Y WHERE id=$1;`;
+    let queryText = `UPDATE "koalas" SET "readyForTransfer"='Y' WHERE id=$1;`;
 
     pool.query(queryText, [koalaId])
     .then(dbResponse => {
