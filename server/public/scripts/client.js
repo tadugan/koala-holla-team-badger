@@ -63,7 +63,11 @@ for (let i= 0; i < response.length; i++){
         <td>${response[i].gender}</td>
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
-        <td><button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button></td>
+        <td>
+          <img src="https://i.dailymail.co.uk/i/pix/2013/03/15/article-2293725-189FDDDD000005DC-515_634x415.jpg" alt="Sad Koala" width="70px">
+          <br>
+          <button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button>
+        </td>
         <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
       </tr>
       `)
