@@ -59,8 +59,8 @@ for (let i= 0; i < response.length; i++){
   $('#viewKoalas').append(`
       <tr>
         <td>${response[i].name}</td>
-        <td>${response[i].gender}</td>
         <td>${response[i].age}</td>
+        <td>${response[i].gender}</td>
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
         <td><button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button></td>
@@ -71,17 +71,19 @@ for (let i= 0; i < response.length; i++){
   $('#viewKoalas').append(`
       <tr>
         <td>${response[i].name}</td>
-        <td>${response[i].gender}</td>
         <td>${response[i].age}</td>
+        <td>${response[i].gender}</td>
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
-        <td><td>
+        <td><img src="https://preview.redd.it/3v6yrnl6fme31.jpg?width=598&auto=webp&s=e4a84f8b4a0a382e2dbf733c81b2b0083ab2f3dc" alt="Happy Koala" width="70px"></td>
         <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
       </tr>
       `)
 }
 }//end for loop
 };//end render function
+
+
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
