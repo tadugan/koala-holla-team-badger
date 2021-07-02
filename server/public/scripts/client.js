@@ -7,8 +7,11 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
   $('#readyButton').on("click", koalaReadyHandler);
+<<<<<<< HEAD
   // listener to delete a koala on button click
   $('#viewKoalas').on('click', 'button#deleteButton' deleteKoalaHandler);
+=======
+>>>>>>> master
 }); // end doc ready
 
 function setupClickListeners() {
@@ -24,7 +27,7 @@ function setupClickListeners() {
       readyForTransfer: 'testName',
       notes: 'testName',
     };
-    // call saveKoala with the new obejct
+    // call saveKoala with the new object
     saveKoala( koalaToSend );
   }); 
 }
@@ -32,8 +35,50 @@ function setupClickListeners() {
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
+  //koalas ("name", "gender", 
+  //"age", "readyForTransfer", "notes")
   
-} // end getKoalas
+  $('#viewKoalas').empty();
+  
+  $.ajax({
+    type: 'GET',
+    url: '/koalas',//DOUBLE CHECK WHICH URL
+  }).then(function (response){
+    console.log('in getKoalas', response);
+    //append koala info to DOM
+    renderKoalaInfo(response)
+  }).catch(error => {
+  console.log('Error rendering Koala info to DOM', error);
+  })
+};// end getKoalas
+
+function renderKoalaInfo(response){
+for (let i= 0; i < response.length; i++){
+
+  if(`${response[i].readyForTransfer}` == `N`){
+  $('#viewKoalas').append(`
+      <tr>
+        <td>${response[i].name}</td>
+        <td>${response[i].gender}</td>
+        <td>${response[i].age}</td>
+        <td>${response[i].readyForTransfer}</td>
+        <td>${response[i].notes}</td>
+        <td><button id="transferButton" data-id="${response.id}"> Ready for Transfer </button></td>
+      </tr>
+      `)
+}else if(`${response[i].readyForTransfer}` == `Y`){
+  $('#viewKoalas').append(`
+      <tr>
+        <td>${response[i].name}</td>
+        <td>${response[i].gender}</td>
+        <td>${response[i].age}</td>
+        <td>${response[i].readyForTransfer}</td>
+        <td>${response[i].notes}</td>
+      </tr>
+      `)
+}
+}//end for loop
+};//end render function
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
@@ -57,6 +102,7 @@ function koalaReady (koalaId) {
   .catch (error =>{
     alert('Something went wrong', error);
   });
+<<<<<<< HEAD
 }
 
 // handler for delete button
@@ -77,4 +123,6 @@ function deleteKoala(koalaId) {
   .catch((error) => {
     alert(`There was a problem deleting ${koalaId}. Please try again.`);
   });
+=======
+>>>>>>> master
 }
