@@ -24,4 +24,3 @@ INSERT INTO koalas ("name", "gender", "age", "readyForTransfer", "notes")
 -- run this statement to view all koalas on the koalas table
 SELECT *
 FROM koalas;
-

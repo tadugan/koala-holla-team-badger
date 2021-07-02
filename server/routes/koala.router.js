@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const pool = require('../modules/pool');
 const express = require('express');
 const { Pool } = require('pg');
 const koalaRouter = express.Router();
@@ -7,7 +7,7 @@ const koalaRouter = express.Router();
 
 
 // GET
-
+ 
 
 // POST
 
@@ -17,7 +17,7 @@ koalaRouter.put(':/id', (req, res) => {
     const koalaId = req.params.id;
     let queryText = `UPDATE "koalas" SET readyForTransfer=Y WHERE id=$1;`;
 
-    Pool.query(queryText, [koalaId])
+    pool.query(queryText, [koalaId])
     .then(dbResponse => {
         console.log('Updated Koala Status:', dbResponse.rowCount);
         res.sendStatus(202);
