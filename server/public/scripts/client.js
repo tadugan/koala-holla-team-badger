@@ -7,6 +7,8 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
   $('#readyButton').on("click", koalaReadyHandler);
+  // listener to delete a koala on button click
+  $('#viewKoalas').on('click', 'button#deleteButton' deleteKoalaHandler);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -54,5 +56,25 @@ function koalaReady (koalaId) {
   })
   .catch (error =>{
     alert('Something went wrong', error);
+  });
+}
+
+// handler for delete button
+function deleteKoalaHandler() {
+  deleteKoala($(this).data('id'));
+}
+
+// ajax request to delete a koala from the database
+function deleteKoala(koalaId) {
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`
+  })
+  .then(response () => {
+    console.log('Goodbye koala friend!!');
+    getKoalas(); // MC's function to GET and display koala data
+  })
+  .catch((error) => {
+    alert(`There was a problem deleting ${koalaId}. Please try again.`);
   });
 }
