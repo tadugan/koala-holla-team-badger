@@ -10,7 +10,7 @@ const koalaRouter = express.Router();
  
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     const newKoala = req.body;
     const queryText = `
     INSERT INTO koalas ("name", "gender", "age", "readyForTransfer", "notes")
