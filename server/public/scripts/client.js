@@ -10,7 +10,7 @@ $( document ).ready( function(){
 
   $('#readyButton').on("click", koalaReadyHandler);
   // listener to delete a koala on button click
-  $('#viewKoalas').on('click', 'button#deleteButton' deleteKoalaHandler);
+  $('#viewKoalas').on('click', 'button#deleteButton', deleteKoalaHandler);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -120,7 +120,6 @@ function koalaReady (koalaId) {
 
 }
 
-}
 
 // handler for delete button
 function deleteKoalaHandler() {
