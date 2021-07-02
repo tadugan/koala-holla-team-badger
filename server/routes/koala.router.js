@@ -22,6 +22,22 @@ koalaRouter.get('/', (req, res) => {
     });
 });
 
+// GET specific koala
+koalaRouter.get('/specificKoala/:id', (req, res) => {
+    const koalaId = req.params.id;
+    //create variable to hold SQL query
+    let queryText = 'SELECT * FROM "koalas" WHERE id=$1;';
+    //make SQL query to DB...
+    pool.query(queryText, [koalaId])
+    .then(result => {
+        res.send(result.rows[0].name);
+    })
+    .catch(error => {
+        console.log('Error trying to get the koala from Postgres', error);
+        res.sendStatus(500);
+    });
+});
+
 // POST
 koalaRouter.post('/', (req, res) => {
     const newKoala = req.body;

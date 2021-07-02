@@ -13,6 +13,7 @@ $( document ).ready( function(){
   $('#viewKoalas').on('click', 'button#deleteButton', deleteKoalaHandler);
 }); // end doc ready
 
+
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
@@ -68,7 +69,7 @@ for (let i= 0; i < response.length; i++){
           <br>
           <button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button>
         </td>
-        <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
+        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Delete</button></td>
       </tr>
       `)
 }else if(`${response[i].readyForTransfer}` == `Y`){
@@ -80,7 +81,7 @@ for (let i= 0; i < response.length; i++){
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
         <td><img src="https://preview.redd.it/3v6yrnl6fme31.jpg?width=598&auto=webp&s=e4a84f8b4a0a382e2dbf733c81b2b0083ab2f3dc" alt="Happy Koala" width="70px"></td>
-        <td><button id="deleteButton" data-id="${response[i].id}">Delete</button></td>
+        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Delete</button></td>
       </tr>
       `)
 }
@@ -129,16 +130,16 @@ function koalaReady (koalaId) {
 
 }
 
-
 // handler for delete button
 function deleteKoalaHandler() {
-  deleteKoala($(this).data('id'));
+  deleteKoala($(this).data('id'), $(this).data('name'));
 }
 
 // ajax request to delete a koala from the database
-function deleteKoala(koalaId) {
-  Swal.fire({
-    title: 'Are you sure you want to abandon this poor Koala, you monster?',
+function deleteKoala(koalaId, koalaName) {
+
+    Swal.fire({
+    title: `Are you sure you want to abandon ${koalaName}, you monster?`,
     text: "You won't be able to find them again. Ever.",
     icon: 'warning',
     showCancelButton: true,
@@ -148,10 +149,10 @@ function deleteKoala(koalaId) {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire(
-        'Abandoned',
+        `${koalaName} has been abandoned`,
         'It\'s gone now. I hope you are happy.',
         'success'
-      )
+      );
 
       $.ajax({
         method: 'DELETE',
@@ -168,9 +169,6 @@ function deleteKoala(koalaId) {
     else {
       return;
     }
-  })
-
-  
+  });
 
 }
-
