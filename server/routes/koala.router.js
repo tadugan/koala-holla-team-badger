@@ -11,12 +11,12 @@ const koalaRouter = express.Router();
 
 // POST
 router.post('/', (req, res) => {
-    const koalaToSend = req.body;
+    const newKoala = req.body;
     const queryText = `
     INSERT INTO koalas ("name", "gender", "age", "readyForTransfer", "notes")
     VALUES ($1, $2, $3, $4, $5);
     `;
-    pool.query(queryText, [koalaToSend.name, koalaToSend.gender, koalaToSend.age, koalaToSend.readyForTransfer, koalaToSend.notes])
+    pool.query(queryText, [newKoala.name, newKoala.gender, newKoala.age, newKoala.readyForTransfer, newKoala.notes])
         .then((result) => {
             res.sendStatus(201);
         })
