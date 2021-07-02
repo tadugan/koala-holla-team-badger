@@ -6,7 +6,7 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
-
+  $('#readyButton').on("click", koalaReadyHandler);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -37,4 +37,22 @@ function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
  
+}
+
+function koalaReadyHandler(){
+  koalaReady($(this).data('id'));
+}
+
+function koalaReady (koalaId) {
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`
+  })
+  .then ((response)=>{
+    console.log('Koala update:', response);
+    getKoalas(); // this should represent whatever code gets and displays updated data
+  })
+  .catch (error =>{
+    alert('Something went wrong', error);
+  });
 }
