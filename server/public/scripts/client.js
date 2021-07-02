@@ -17,6 +17,18 @@ $( document ).ready( function(){
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
+    // validate inputs
+    if (!$('#nameIn').val()|| !$('#ageIn').val() || !$('#genderIn').val() || !$('#readyForTransferIn').val() || !$('#notesIn').val()) {
+      Swal.fire({
+        title: 'Unable to add Koala',
+        text: 'Please fill all input fields',
+        imageUrl: 'https://steamuserimages-a.akamaihd.net/ugc/932681861441061927/099D00F82434358657988699F0C2DD83DEDE1617/',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      })
+      return;
+    }
     // get user input and put in an object - DONE
     // NOT WORKING YET :( - WORKING
     // using a test object - ADDED INPUT VALUES
@@ -27,6 +39,7 @@ function setupClickListeners() {
       readyForTransfer: $('#readyForTransferIn').val(),
       notes: $('#notesIn').val(),
     };
+
     // call saveKoala with the new object
     saveKoala( koalaToSend );
     clearInput();
@@ -69,7 +82,7 @@ for (let i= 0; i < response.length; i++){
           <br>
           <button id="transferButton" data-id="${response[i].id}"> Ready for Transfer </button>
         </td>
-        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Delete</button></td>
+        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Abandon</button></td>
       </tr>
       `)
 }else if(`${response[i].readyForTransfer}` == `Y`){
@@ -81,7 +94,7 @@ for (let i= 0; i < response.length; i++){
         <td>${response[i].readyForTransfer}</td>
         <td>${response[i].notes}</td>
         <td><img src="https://preview.redd.it/3v6yrnl6fme31.jpg?width=598&auto=webp&s=e4a84f8b4a0a382e2dbf733c81b2b0083ab2f3dc" alt="Happy Koala" width="70px"></td>
-        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Delete</button></td>
+        <td><button id="deleteButton" data-id="${response[i].id}" data-name="${response[i].name}">Abandon</button></td>
       </tr>
       `)
 }
